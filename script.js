@@ -32,11 +32,7 @@ submitWordButton.addEventListener("click", function(event) {
         return false;
     }
     switchDisplaysOnWord();
-    mysteryWordArray = mysteryWord.split("");
-    for (let i = 0; i < mysteryWordArray.length; i++) {
-        fillInTheBlankArray.push("_ ");
-    }
-    fillInTheBlank.innerHTML = fillInTheBlankArray.join("");
+    createMysteryWordArray(mysteryWord);
 })
 
 letterGuessInput.addEventListener("input", function(event) {
@@ -74,6 +70,15 @@ letterGuessInput.addEventListener("input", function(event) {
 })
 
   /*----- functions -----*/
+
+function createMysteryWordArray (word){
+    mysteryWordArray = word.split("");
+    for (let i = 0; i < mysteryWordArray.length; i++) {
+        fillInTheBlankArray.push("_ ");
+    }
+    fillInTheBlank.innerHTML = fillInTheBlankArray.join("");
+}
+
 function incorrectGuess() {
     incorrectLetters.push(letterGuess);
     var ul = document.querySelector("#incorrect-letters");
