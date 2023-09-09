@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script defer src="./script.js"></script>
+    <title>Spaceman</title>
+</head>
+<body>
+    <header>
+    <h1>Spaceman</h1>
+    </header>
+    <div id="display">
+        <span id="guesses-display">
+            <ul id="incorrect-letters"><h3>Guesses Display</h3>
+            </ul>
+        </span>
+        <span id="inputs">
+            <div id="reset">
+                <p>Ready to start again? Click <a href=".">here</a> to reset.</p>
+            </div>
+            <form id="mystery-word-input">
+                Player 1, enter your word.
+                <input type="text" class="input" name="word" id="mystery-word" placeholder="Enter Your Mystery Word">
+                <p></p>
+                <button class="input-button" id="word-input-button">Submit Word</button>
+            </form>
+            <div id="warnings"></div>
+            <form id="letter-guess-form">
+                Enter your letter guess.
+                <input type="text" class="input" name="guesses" id="letter-guess" placeholder="Enter Your Letter Guess">
+            </form>
+            <div id="fill-in-the-blank">
+                Show fill in the blank display here
+            </div>
+        </span>
+        <span id="countdown">
+            <div id="counter"></div>
+            <div>Display countdown graphic here. Start with empty launchpad as default image.
+            </div>
+        </span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+body {
+    background-image: url("./images/background-space.png");
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position: center;
+    height: 100vh;
+    width: auto;
+}
+
+h1 {
+    
+}
+
+header {
+    color: white;
+    text-align: center;
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+ul {
+    list-style-type: none;
+}
+
+#display {
+    min-height: 600px;
+    display: inline-flex;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#guesses-display, #inputs, #countdown {
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 10px;
+    width: 200px;
+    outline: dotted 2px grey;
+}
+
+#inputs {
+    text-align: center;
+}
+
+#letter-guess-form, #fill-in-the-blank, #reset {
+    display: none;
+}
+
+#mystery-word-input {
+    display: ;
+}
