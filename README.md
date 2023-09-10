@@ -9,7 +9,8 @@ X Display incorrect guesses somewhere on the page.
 X Display correct guesses in the appropriate spot in the display which will dynamically update.
 X Countdown variable to auto update after incorrect guesses.
 X Game end events to happen automatically after countdown elapses or word completed.
-Make modal for instructions to appear on load. Will eventually also hold the beginning of games options.
+X Make modal for instructions to appear on load. Will eventually also hold the beginning of games options.
+Find way to stop already guessed letters from counting
 
 Stretch Goals
 Small, static image built as the countdown variable increments.

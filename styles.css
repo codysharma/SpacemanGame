@@ -48,6 +48,32 @@ ul {
     display: none;
 }
 
+#modal {
+	border: 2px; 
+	background-color: rgba(31, 31, 32, 0.411);
+    border-radius: 10px;
+    overflow: auto;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 1;
+    height: 100%;
+	padding: 10px;
+}
+
+#modal-textbox {
+	background-color: white;
+	box-shadow: -1px 1px 20px 20px grey;
+	height: 350px;
+	width: 500px;
+	border-radius: 10px;
+	padding: 20px;
+	margin: 150px auto;
+	/* this margin moves it down 150, then auto */
+}
+
 #mystery-word-input {
     display: ;
 }
+

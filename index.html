@@ -11,14 +11,42 @@
     <header>
     <h1>Spaceman</h1>
     </header>
+    <!-- <div id="modal">
+        <div id="modal-textbox">
+            <h1>Welcome to Spaceman!</h1>
+            <p>In Spaceman, one player enters a mystery word to start the game, which the other player must then guess letter by letter. Each incorrect guess allows our astronaut to build one more piece of their spaceship. Can you stop them in time?</p>
+            <button class="close-button" id="close-modal">Begin playing</button>
+            <p>Game Settings (some features are in development)</p>
+            <div id="settings">
+                <form id="game-settings">
+                    <input type="radio" name="computer-opponent" id="yes-computer" value="yes-computer">
+                    <label for="yes-computer">Play against the computer</label>
+                    <br>
+                    <input type="radio" name="timer-toggle" id="timer-toggle-on" value="yes-timer">
+                    <label for="timer-toggle-on">Timer On</label>
+                    <input type="radio" name="timer-toggle" id="timer-toggle-off" value="no-timer">
+                    <label for="timer-toggle-off">Timer Off</label>
+                    <br>
+                    <input type="range" id="incorrect-guess-number" min="5" max="8">
+                    <label for="incorrect-guess-number">Number of mistakes allowed (between 5 - 8)</label>
+                </form>
+            </div>
+        </div>
+    </div> -->
     <div id="display">
         <span id="guesses-display">
-            <ul id="incorrect-letters"><h3>Guesses Display</h3>
+            <div id="instructions">
+                Click the button for instructions and to change settings (warning: will reset current game)
+            </div>
+            <button type="button" class="button" id="settings-button">Instructions and Settings</button>
+            <h3>Guesses Display</h3>
+            <ul id="incorrect-letters">
             </ul>
         </span>
         <span id="inputs">
             <div id="reset">
-                <p>Ready to start again? Click <a href=".">here</a> to reset.</p>
+                <button class="reset" id="reset-button">Click here to play again</button>
+                <br>
             </div>
             <form id="mystery-word-input">
                 Player 1, enter your word.
@@ -37,6 +65,7 @@
         </span>
         <span id="countdown">
             <div id="counter"></div>
+            <br>
             <div>Display countdown graphic here. Start with empty launchpad as default image.
             </div>
         </span>

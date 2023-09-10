@@ -2,6 +2,8 @@
 
 
   /*----- state variables -----*/
+let closeModalButton = document.querySelector("#close-modal")
+let modalTextBox = document.querySelector("#modal")
 let submitWordButton = document.querySelector("#word-input-button");
 let mysteryWordValue = document.querySelector("#mystery-word")
 let mysteryWordInput = document.querySelector("#mystery-word-input")
@@ -17,13 +19,33 @@ let guessedLetters = [];
 let incorrectLetters = [];
 let incorrectGuessCounter = document.querySelector("#counter");
 let incorrectGuessNumber = 5;
-let reset = document.querySelector("#reset")
+let reset = document.querySelector("#reset");
+let resetButton = document.querySelector("#reset-button");
+// let modalToggle = document.querySelector("#settings-button");
+// let botPlay = document.querySelector("#yes-computer");
+// let timerOn = document.querySelector("#timer-toggle-on");
+// let timerOff = document.querySelector("#timer-toggle-off");
+// let incorrectGuessInput = document.querySelector("#incorrect-guess-number");
 
+// botPlay.disabled = true;
+// timerOn.disabled = true;
+// timerOff.disabled = true;
+// incorrectGuessInput.disabled = true;
 
   /*----- cached elements  -----*/
 
 
   /*----- event listeners -----*/
+// modalTextBox.addEventListener("loadedmetadata", function(event) {
+//     event.preventDefault();
+//     modalTextBox.style.display = ""
+// })
+
+// closeModalButton.addEventListener("click", function(event) {
+//     event.preventDefault();
+//     modalTextBox.style.display = "none";
+// })
+
 submitWordButton.addEventListener("click", function(event) {
     event.preventDefault();
     mysteryWord = mysteryWordValue.value.toLowerCase();
@@ -31,12 +53,13 @@ submitWordButton.addEventListener("click", function(event) {
         warningsDisplay.innerText = "Your word cannot contain anything other than letters and spaces. Please try again";
         return false;
     }
-    switchDisplaysOnWord();
     createMysteryWordArray(mysteryWord);
+    switchDisplaysOnWord();
 })
 
 letterGuessInput.addEventListener("input", function(event) {
     event.preventDefault();
+    let guessedLetters = []; 
     letterGuess = letterGuessInput.value;
     letterGuessInput.value = "";
     if (/^[A-Za-z\s]*$/.test(letterGuess) === false) {
@@ -69,10 +92,20 @@ letterGuessInput.addEventListener("input", function(event) {
     }   
 })
 
+resetButton.addEventListener("click", function(event) {
+    resetGame();
+})
+
+// modalToggle.addEventListener("click", function(event) {
+//     event.preventDefault();
+//     modalTextBox.style.display = ""
+// })
+
   /*----- functions -----*/
 
 function createMysteryWordArray (word){
     mysteryWordArray = word.split("");
+    fillInTheBlankArray = [];
     for (let i = 0; i < mysteryWordArray.length; i++) {
         fillInTheBlankArray.push("_ ");
     }
@@ -80,22 +113,42 @@ function createMysteryWordArray (word){
 }
 
 function incorrectGuess() {
+    let incorrectLetters = [];
     incorrectLetters.push(letterGuess);
     var ul = document.querySelector("#incorrect-letters");
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(incorrectLetters[incorrectLetters.length-1]));
     ul.appendChild(li);
     incorrectGuessNumber--;
-    incorrectGuessCounter.innerText = `  Incorrect guesses left: ${incorrectGuessNumber}`;
+    incorrectGuessCounter.innerText = `Incorrect guesses left: ${incorrectGuessNumber}`;
     if (incorrectGuessNumber === 0) {
-        warningsDisplay.innerText = "You lost. Better luck next time";
-        letterGuessInput.disabled = true;
-        reset.style.display = "block";
+        loss();
     }
 }
 
 function incorrectFormat(inputString) {
-    
+    //to be written
+}
+
+function loss() {
+    warningsDisplay.innerText = `Your word was "${mysteryWord}". Better luck next time`;
+    letterGuessInput.disabled = true;
+    reset.style.display = "block";
+}
+
+function resetGame() {
+    let mysteryWord, mysteryWordArray, letterGuess = undefined;
+    mysteryWordInput.style.display = "";
+    warningsDisplay.innerText = "";
+    letterGuessForm.style.display = "";
+    fillInTheBlank.style.display = "";
+    incorrectGuessCounter.innerText = "";
+    fillInTheBlank.innerHTML = "";
+    reset.style.display = "none";
+    letterGuessInput.disabled = false;
+    document.querySelector("#incorrect-letters").innerText = "";
+    incorrectGuessNumber = 5;
+
 }
 
 function switchDisplaysOnWord() {
@@ -103,7 +156,7 @@ function switchDisplaysOnWord() {
     warningsDisplay.innerText = "";
     letterGuessForm.style.display = "block";
     fillInTheBlank.style.display = "block";
-    incorrectGuessCounter.innerText = `  Incorrect guesses left: ${incorrectGuessNumber}`;
+    incorrectGuessCounter.innerText = `Incorrect guesses left: ${incorrectGuessNumber}`;
 }
 
 function win() {
