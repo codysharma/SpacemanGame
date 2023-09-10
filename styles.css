@@ -24,6 +24,10 @@ ul {
     list-style-type: none;
 }
 
+#countdown {
+    text-align: center;
+}
+
 #display {
     min-height: 600px;
     display: inline-flex;
@@ -60,6 +64,7 @@ ul {
     z-index: 1;
     height: 100%;
 	padding: 10px;
+    display: ;
 }
 
 #modal-textbox {
@@ -70,6 +75,7 @@ ul {
 	border-radius: 10px;
 	padding: 20px;
 	margin: 150px auto;
+    display: ;
 	/* this margin moves it down 150, then auto */
 }
 

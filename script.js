@@ -3,7 +3,7 @@
 
   /*----- state variables -----*/
 let closeModalButton = document.querySelector("#close-modal")
-let modalTextBox = document.querySelector("#modal")
+let modal = document.querySelector("#modal")
 let submitWordButton = document.querySelector("#word-input-button");
 let mysteryWordValue = document.querySelector("#mystery-word")
 let mysteryWordInput = document.querySelector("#mystery-word-input")
@@ -21,30 +21,38 @@ let incorrectGuessCounter = document.querySelector("#counter");
 let incorrectGuessNumber = 5;
 let reset = document.querySelector("#reset");
 let resetButton = document.querySelector("#reset-button");
-// let modalToggle = document.querySelector("#settings-button");
-// let botPlay = document.querySelector("#yes-computer");
-// let timerOn = document.querySelector("#timer-toggle-on");
-// let timerOff = document.querySelector("#timer-toggle-off");
-// let incorrectGuessInput = document.querySelector("#incorrect-guess-number");
+let modalToggle = document.querySelector("#settings-button");
+let botPlay = document.querySelector("#yes-computer");
+let timerOn = document.querySelector("#timer-toggle-on");
+let timerOff = document.querySelector("#timer-toggle-off");
+let incorrectGuessInput = document.querySelector("#incorrect-guess-number");
 
-// botPlay.disabled = true;
-// timerOn.disabled = true;
-// timerOff.disabled = true;
-// incorrectGuessInput.disabled = true;
+
+botPlay.disabled = true;
+timerOn.disabled = true;
+timerOff.disabled = true;
+incorrectGuessInput.disabled = true;
 
   /*----- cached elements  -----*/
 
 
   /*----- event listeners -----*/
+  modal.style.display = "none";
+//will readd this once testing is complete
 // modalTextBox.addEventListener("loadedmetadata", function(event) {
 //     event.preventDefault();
-//     modalTextBox.style.display = ""
+//     modal.style.display = "none"
 // })
 
-// closeModalButton.addEventListener("click", function(event) {
-//     event.preventDefault();
-//     modalTextBox.style.display = "none";
-// })
+modalToggle.addEventListener("click", function(event) {
+    event.preventDefault();    
+    modal.style.display = "";
+})
+
+closeModalButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    modal.style.display = "none";
+})
 
 submitWordButton.addEventListener("click", function(event) {
     event.preventDefault();
@@ -96,11 +104,6 @@ resetButton.addEventListener("click", function(event) {
     resetGame();
 })
 
-// modalToggle.addEventListener("click", function(event) {
-//     event.preventDefault();
-//     modalTextBox.style.display = ""
-// })
-
   /*----- functions -----*/
 
 function createMysteryWordArray (word){
@@ -120,13 +123,13 @@ function incorrectGuess() {
     li.appendChild(document.createTextNode(incorrectLetters[incorrectLetters.length-1]));
     ul.appendChild(li);
     incorrectGuessNumber--;
-    incorrectGuessCounter.innerText = `Incorrect guesses left: ${incorrectGuessNumber}`;
+    incorrectGuessCounter.innerText = `T minus - ${incorrectGuessNumber}`;
     if (incorrectGuessNumber === 0) {
         loss();
     }
 }
 
-function incorrectFormat(inputString) {
+function incorrectWordFormat(inputString) {
     //to be written
 }
 
@@ -156,7 +159,7 @@ function switchDisplaysOnWord() {
     warningsDisplay.innerText = "";
     letterGuessForm.style.display = "block";
     fillInTheBlank.style.display = "block";
-    incorrectGuessCounter.innerText = `Incorrect guesses left: ${incorrectGuessNumber}`;
+    incorrectGuessCounter.innerText = `T minus - ${incorrectGuessNumber}`;
 }
 
 function win() {
