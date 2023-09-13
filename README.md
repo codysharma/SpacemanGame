@@ -27,6 +27,7 @@ Incorporate a dictionary API to ensure words are actual words.
 Create spell check function using API.  
 Create a hint function to appear after certain number consecutive incorrect guesses.  
 Decorate the liftoff counter with colored text, background div, etc.  
+Download gif of image to make the rocket have movement.  
 Save timed results and display session history.  
 Parse timed results by difficulty/char length to make the data more comparable.  
 Other design aesthetics?  

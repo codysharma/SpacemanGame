@@ -2,13 +2,19 @@
 
 
   /*----- state variables -----*/
-let closeModalButton = document.querySelector("#close-modal")
-let modal = document.querySelector("#modal")
+//Find a way to create a game setup "state" object with incorrectGuessNumber, Timer, etc.?
+const state = {
+    timerInterval: null,
+}
+
+  //input variables
 let submitWordButton = document.querySelector("#word-input-button");
 let mysteryWordValue = document.querySelector("#mystery-word")
 let mysteryWordInput = document.querySelector("#mystery-word-input")
 let mysteryWord;
 let mysteryWordArray;
+
+//display variables
 let warningsDisplay = document.querySelector("#warnings");
 let letterGuessForm = document.querySelector("#letter-guess-form")
 let letterGuessInput = document.querySelector("#letter-guess")
@@ -19,26 +25,37 @@ let guessedLetters = [];
 let incorrectLetters = [];
 let incorrectGuessCounter = document.querySelector("#counter");
 let incorrectGuessNumber = 5;
+
+//reset variables
 let reset = document.querySelector("#reset");
 let resetButton = document.querySelector("#reset-button");
+
+//modal variables
+let closeModalButton = document.querySelector("#close-modal")
+let modal = document.querySelector("#modal")
 let modalToggle = document.querySelector("#settings-button");
 let botPlay = document.querySelector("#yes-computer");
 let timerOn = document.querySelector("#timer-toggle-on");
 let timerOff = document.querySelector("#timer-toggle-off");
 let incorrectGuessInput = document.querySelector("#incorrect-guess-number");
+let time = 120;
+const sizeWord = document.getElementById('size-word');
+const sizePhrase = document.getElementById('size-phrase');
 
-
+//disabling options until ready
 botPlay.disabled = true;
 timerOn.disabled = true;
 timerOff.disabled = true;
 incorrectGuessInput.disabled = true;
+sizeWord.disabled = true;
+sizePhrase.disabled = true;
 
   /*----- cached elements  -----*/
 
 
   /*----- event listeners -----*/
-  modal.style.display = "none";
-//will readd this once testing is complete
+modal.style.display = "none";
+//will re-add this once testing is complete
 // modalTextBox.addEventListener("loadedmetadata", function(event) {
 //     event.preventDefault();
 //     modal.style.display = "none"
@@ -54,6 +71,11 @@ closeModalButton.addEventListener("click", function(event) {
     modal.style.display = "none";
 })
 
+//disable this event listener if option on modal chosen
+mysteryWordValue.addEventListener("keyup", function(event) {
+    mysteryWordValue.setAttribute("onkeypress", "return event.charCode != 32");
+})
+
 submitWordButton.addEventListener("click", function(event) {
     event.preventDefault();
     mysteryWord = mysteryWordValue.value.toLowerCase();
@@ -67,7 +89,6 @@ submitWordButton.addEventListener("click", function(event) {
 
 letterGuessInput.addEventListener("input", function(event) {
     event.preventDefault();
-    let guessedLetters = []; 
     letterGuess = letterGuessInput.value;
     letterGuessInput.value = "";
     if (/^[A-Za-z\s]*$/.test(letterGuess) === false) {
@@ -105,6 +126,13 @@ resetButton.addEventListener("click", function(event) {
 })
 
   /*----- functions -----*/
+function appendList() {
+}
+
+function countDown () {
+    //do the incrementment down from 120s
+    //if timer.Interval === 0, loss();
+}
 
 function createMysteryWordArray (word){
     mysteryWordArray = word.split("");
@@ -118,6 +146,7 @@ function createMysteryWordArray (word){
 function incorrectGuess() {
     let incorrectLetters = [];
     incorrectLetters.push(letterGuess);
+    //replace with appendList function? Need to figure out how to take correct parameter
     var ul = document.querySelector("#incorrect-letters");
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(incorrectLetters[incorrectLetters.length-1]));
@@ -151,7 +180,6 @@ function resetGame() {
     letterGuessInput.disabled = false;
     document.querySelector("#incorrect-letters").innerText = "";
     incorrectGuessNumber = 5;
-
 }
 
 function switchDisplaysOnWord() {
