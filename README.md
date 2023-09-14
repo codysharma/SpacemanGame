@@ -10,21 +10,20 @@ X Display correct guesses in the appropriate spot in the display which will dyna
 X Countdown variable to auto update after incorrect guesses.  
 X Game end events to happen automatically after countdown elapses or word completed.  
 X Make modal for instructions to appear on load. Will eventually also hold the beginning of games options.  
-Find way to stop already guessed letters from counting  
+X Find way to stop already guessed letters from counting  
 
 Stretch Goals:  
-Be able to select auto-play, so the computer chooses the mystery word for the player to guess.  
-Small, static image built as the countdown variable increments.  
-Choose and incorporate font  
-Player choice on how many turns before end of game.  
-Make functions, so code is nicer  
-At the beginning of a road, select the option to enter a word or phrase with spaces.  
+X Be able to select auto-play, so the computer chooses the mystery word for the player to guess.  
+Display timer (TODO - how to get the increments every 1s to update on the DOM?).  
+Small, static image builds as the countdown variable increments.  
+Choose and incorporate font.  
+X Player choice on how many turns before end of game.  
+Make functions, so code is nicer.  
+At the beginning of a round, select the option to enter a word or phrase with spaces.  
 Create pun name.  
-Display timer.  
 Allow punctuation.  
 Choice at beginning - easy or hard mode, showing punctuation or not showing it.  
-Incorporate a dictionary API to ensure words are actual words.  
-Create spell check function using API.  
+X Pull random word API for bot play.  
 Create a hint function to appear after certain number consecutive incorrect guesses.  
 Decorate the liftoff counter with colored text, background div, etc.  
 Download gif of image to make the rocket have movement.  

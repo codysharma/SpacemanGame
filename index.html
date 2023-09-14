@@ -19,15 +19,17 @@
             <p>Game Settings (some features are in development)</p>
             <div id="settings">
                 <form id="game-settings">
-                    <input type="radio" name="computer-opponent" id="yes-computer" value="yes-computer">
+                    <input type="radio" name="computer-opponent" id="yes-computer" value="yes-computer" checked>
                     <label for="yes-computer">Play against the computer</label>
+                    <input type="radio" name="computer-opponent" id="no-computer" value="no-computer">
+                    <label for="yes-computer">Play against another person</label>
                     <br>
-                    <input type="radio" name="timer-toggle" id="timer-toggle-on" value="yes-timer">
+                    <input type="radio" name="timer-toggle" id="timer-toggle-on" value="yes-timer" checked>
                     <label for="timer-toggle-on">Timer On</label>
                     <input type="radio" name="timer-toggle" id="timer-toggle-off" value="no-timer">
                     <label for="timer-toggle-off">Timer Off</label>
                     <br>
-                    <input type="range" id="incorrect-guess-number" min="5" max="8">
+                    <input type="range" id="incorrect-guess-number" min="5" max="8" value="5">
                     <label for="incorrect-guess-number">Number of mistakes allowed (between 5 - 8)</label>
                     <br>
                     Entering a word or phrase:
@@ -67,6 +69,8 @@
             </form>
             <div id="fill-in-the-blank">
                 Show fill in the blank display here
+            </div>
+            <div id="countdown-clock">Will display game clock here              
             </div>
         </span>
         <span id="countdown">

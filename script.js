@@ -1,5 +1,5 @@
   /*----- constants -----*/
-
+const apiURL =`https://random-word-api.herokuapp.com/word?lang=en`
 
   /*----- state variables -----*/
 //Find a way to create a game setup "state" object with incorrectGuessNumber, Timer, etc.?
@@ -34,28 +34,33 @@ let resetButton = document.querySelector("#reset-button");
 let closeModalButton = document.querySelector("#close-modal")
 let modal = document.querySelector("#modal")
 let modalToggle = document.querySelector("#settings-button");
-let botPlay = document.querySelector("#yes-computer");
+let botPlayToggle = document.querySelector("#yes-computer");
+let botPlay = true;
+const personPlayToggle = document.querySelector('#no-computer');
 let timerOn = document.querySelector("#timer-toggle-on");
 let timerOff = document.querySelector("#timer-toggle-off");
+let timer = true;
+const clock = document.getElementById('countdown-clock');
 let incorrectGuessInput = document.querySelector("#incorrect-guess-number");
-let time = 120;
+let gameClock = 10;
 const sizeWord = document.getElementById('size-word');
 const sizePhrase = document.getElementById('size-phrase');
 
 //disabling options until ready
-botPlay.disabled = true;
-timerOn.disabled = true;
-timerOff.disabled = true;
-incorrectGuessInput.disabled = true;
+// botPlayToggle.disabled = true;
+// personPlayToggle.disabled = true;
+// timerOn.disabled = true;
+// timerOff.disabled = true;
 sizeWord.disabled = true;
 sizePhrase.disabled = true;
 
   /*----- cached elements  -----*/
+randomWordApi(apiURL);
 
 
   /*----- event listeners -----*/
 modal.style.display = "none";
-//will re-add this once testing is complete
+//will re-add this once testing is complete to autoload
 // modalTextBox.addEventListener("loadedmetadata", function(event) {
 //     event.preventDefault();
 //     modal.style.display = "none"
@@ -69,9 +74,48 @@ modalToggle.addEventListener("click", function(event) {
 closeModalButton.addEventListener("click", function(event) {
     event.preventDefault();
     modal.style.display = "none";
+    resetGame();
+    clock.innerText = gameClock;
+    if (timer === true) {
+        //setInterval(countDown(), 1000);
+    }
+    if (botPlay === true) {
+        autoGenerateWord();
+    } else {
+        return;
+    }
 })
 
-//disable this event listener if option on modal chosen
+botPlayToggle.addEventListener("click", function(event) {
+    if (event.target && event.target.matches("input[type='radio']")) {
+        botPlay = true;
+    }
+    resetGame();
+})
+
+personPlayToggle.addEventListener("click", function(event) {
+    if (event.target && event.target.matches("input[type='radio']")) {
+        botPlay = false;
+    }
+    resetGame();
+})
+
+timerOn.addEventListener("click", function(event) {
+    if (event.target && event.target.matches("input[type='radio']")) {
+        timer = true;
+    }
+    resetGame();
+})
+
+timerOff.addEventListener("click", function(event) {
+    if (event.target && event.target.matches("input[type='radio']")) {
+        timer = false;
+    }
+    resetGame();
+})
+
+//disable this event listener if phrase option on modal chosen
+//doesn't allow spaces as inputs
 mysteryWordValue.addEventListener("keyup", function(event) {
     mysteryWordValue.setAttribute("onkeypress", "return event.charCode != 32");
 })
@@ -98,22 +142,12 @@ letterGuessInput.addEventListener("input", function(event) {
         if (guessedLetters.includes(letterGuess) === false) {
             guessedLetters.push(letterGuess);
             if (mysteryWordArray.includes(letterGuess) === true) {
-                let letterSpot = [];
-                for (let j = 0; j < mysteryWordArray.length; j++){
-                    if (letterGuess === mysteryWordArray[j]){
-                        letterSpot.push(j)
-                    } else {
-                    }
-                }
-                for (let k = 0; k < letterSpot.length; k++) {
-                    fillInTheBlankArray[letterSpot[k]] = letterGuess;
-                }
-                fillInTheBlank.innerHTML = fillInTheBlankArray.join("");
+                correctGuess();
             } else {
                 incorrectGuess();
             }
         } else {
-            //add error message like, "letter already tried"?
+            warningsDisplay.innerText = "You already tried that letter. Try another."
         }
         if (fillInTheBlank.innerText.includes("_") === false){
             win();
@@ -129,9 +163,32 @@ resetButton.addEventListener("click", function(event) {
 function appendList() {
 }
 
+function autoGenerateWord() {
+    randomWordApi(apiURL);
+    setTimeout(createMysteryWordArray(mysteryWord), 100);
+    switchDisplaysOnWord();
+    incorrectGuessNumber = incorrectGuessInput.value;
+}
+
+function correctGuess() {
+    let letterSpot = [];
+    for (let j = 0; j < mysteryWordArray.length; j++){
+        if (letterGuess === mysteryWordArray[j]){
+            letterSpot.push(j)
+        } else {
+        }
+    }
+    for (let k = 0; k < letterSpot.length; k++) {
+        fillInTheBlankArray[letterSpot[k]] = letterGuess;
+    }
+    fillInTheBlank.innerHTML = fillInTheBlankArray.join("");
+}
+
 function countDown () {
-    //do the incrementment down from 120s
-    //if timer.Interval === 0, loss();
+    gameClock -= 1;
+    if (gameClock === 0) {
+        loss();
+    }
 }
 
 function createMysteryWordArray (word){
@@ -141,12 +198,13 @@ function createMysteryWordArray (word){
         fillInTheBlankArray.push("_ ");
     }
     fillInTheBlank.innerHTML = fillInTheBlankArray.join("");
+    incorrectGuessNumber = incorrectGuessInput.value;
 }
 
 function incorrectGuess() {
     let incorrectLetters = [];
     incorrectLetters.push(letterGuess);
-    //replace with appendList function? Need to figure out how to take correct parameter
+    //replace with function for appendList? Need to figure out how to take correct parameter
     var ul = document.querySelector("#incorrect-letters");
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(incorrectLetters[incorrectLetters.length-1]));
@@ -163,13 +221,25 @@ function incorrectWordFormat(inputString) {
 }
 
 function loss() {
-    warningsDisplay.innerText = `Your word was "${mysteryWord}". Better luck next time`;
+    warningsDisplay.innerText = `You were trying to guess "${mysteryWord}". Better luck next time`;
     letterGuessInput.disabled = true;
     reset.style.display = "block";
 }
 
+function randomWordApi (url) {
+    fetch(apiURL,
+        {type: "GET",
+    })
+    .then(data => {
+        data.json()
+        .then((processedData) => {
+            mysteryWord = processedData[0];
+        })
+    })
+}
+
 function resetGame() {
-    let mysteryWord, mysteryWordArray, letterGuess = undefined;
+    mysteryWord, mysteryWordArray, letterGuess = undefined;
     mysteryWordInput.style.display = "";
     warningsDisplay.innerText = "";
     letterGuessForm.style.display = "";
@@ -178,8 +248,12 @@ function resetGame() {
     fillInTheBlank.innerHTML = "";
     reset.style.display = "none";
     letterGuessInput.disabled = false;
+    guessedLetters = [];  
     document.querySelector("#incorrect-letters").innerText = "";
     incorrectGuessNumber = 5;
+    if (botPlay === true) {
+        autoGenerateWord();
+    }
 }
 
 function switchDisplaysOnWord() {
