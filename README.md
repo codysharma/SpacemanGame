@@ -19,6 +19,7 @@ Small, static image builds as the countdown variable increments.
 Choose and incorporate font.  
 X Player choice on how many turns before end of game.  
 Make functions, so code is nicer.  
+Decide which API to use.   
 At the beginning of a round, select the option to enter a word or phrase with spaces.  
 Create pun name.  
 Allow punctuation.  

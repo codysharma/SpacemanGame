@@ -25,6 +25,9 @@ let guessedLetters = [];
 let incorrectLetters = [];
 let incorrectGuessCounter = document.querySelector("#counter");
 let incorrectGuessNumber = 5;
+const rocketPicture = document.getElementById('rocket-picture');
+//TODO: make rocket counter and show whenever an incorrect answer is chosen
+
 
 //reset variables
 let reset = document.querySelector("#reset");
@@ -49,10 +52,11 @@ const sizePhrase = document.getElementById('size-phrase');
 //disabling options until ready
 // botPlayToggle.disabled = true;
 // personPlayToggle.disabled = true;
-// timerOn.disabled = true;
-// timerOff.disabled = true;
+timerOn.disabled = true;
+timerOff.disabled = true;
 sizeWord.disabled = true;
 sizePhrase.disabled = true;
+incorrectGuessInput.disabled = true;
 
   /*----- cached elements  -----*/
 randomWordApi(apiURL);
@@ -75,7 +79,7 @@ closeModalButton.addEventListener("click", function(event) {
     event.preventDefault();
     modal.style.display = "none";
     resetGame();
-    clock.innerText = gameClock;
+    // clock.innerText = `Game Clock: ${gameClock}`;
     if (timer === true) {
         //setInterval(countDown(), 1000);
     }
@@ -224,6 +228,7 @@ function loss() {
     warningsDisplay.innerText = `You were trying to guess "${mysteryWord}". Better luck next time`;
     letterGuessInput.disabled = true;
     reset.style.display = "block";
+    rocketPicture.setAttribute("src", "./images/rocketgif.gif");
 }
 
 function randomWordApi (url) {
@@ -251,6 +256,7 @@ function resetGame() {
     guessedLetters = [];  
     document.querySelector("#incorrect-letters").innerText = "";
     incorrectGuessNumber = 5;
+    rocketPicture.setAttribute("src", "./images/rocketstill.gif");
     if (botPlay === true) {
         autoGenerateWord();
     }

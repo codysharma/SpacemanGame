@@ -82,3 +82,22 @@ ul {
     display: ;
 }
 
+#rocket-picture {
+    max-width: 200px;
+    max-height: 200px;
+    z-index: 0;
+    position: fixed;
+    left: 400px;
+}
+
+#launchpad {
+
+}
+
+#one {
+    width: 200px;
+    height: 200px;
+    /* background-color: yellow;  */
+    z-index: 6;
+    position: relative;
+}
