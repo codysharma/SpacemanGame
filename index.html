@@ -13,7 +13,13 @@
 </head>
 <body>
     <header>
-    <h1>SPACEMAN</h1>
+        <h1 id="header-one">SPACEMAN</h1>
+        <span id="header-two">
+            <button type="button" class="button" id="settings-button" onclick="turnModalOn()">Instructions and Settings</button>
+            <div id="instructions">
+                (warning: will reset current game)
+            </div>
+        </span>
     </header>
     <div id="modal">
         <div id="modal-textbox">
@@ -47,11 +53,12 @@
     </div>
     <div id="display">
         <span id="guesses-display">
-            <button type="button" class="button" id="settings-button" onclick="turnModalOn()">Instructions and Settings</button>
+            <!-- <button type="button" class="button" id="settings-button" onclick="turnModalOn()">Instructions and Settings</button>
             <div id="instructions">
                 (warning: will reset current game)
-            </div>
-            <h3>Guesses Display</h3>
+            </div> -->
+            <h3>Already Guessed</h3>
+            <p id="guessed-info-text">Previous guesses will appear here</p>
             <ul id="incorrect-letters">
             </ul>
         </span>

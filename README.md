@@ -18,7 +18,9 @@ X Display timer (TODO - how to get the increments every 1s to update on the DOM?
 X Small, static image builds as the countdown variable increments.  
 X Choose and incorporate font.  
 X Player choice on how many turns before end of game.  
-Make functions, so code is nicer.  
+Refactor code:  
+Make functions to organize code architecture  
+Make game state object at beginning  
 At the beginning of a round, select the option to enter a word or phrase with spaces.   
 X Pull random word API for bot play.  
 Create a hint function to appear after certain number consecutive incorrect guesses.  

@@ -1,11 +1,20 @@
   /*----- constants -----*/
-const apiURL =`https://random-word-api.herokuapp.com/word?lang=en`
+const apiURL =`https://random-word-api.herokuapp.com/word`
 
   /*----- state variables -----*/
 //Find a way to create a game setup "state" object with incorrectGuessNumber, Timer, etc.?
 const state = {
-    timerInterval: null,
+    
 }
+
+let timed = true;
+let botPlay = true;
+let fillInTheBlankArray = [];
+let guessedLetters = [];
+let incorrectLetters = [];
+let incorrectGuessNumber = 5;
+let incorrectGuessInARow = 0;
+let timeLeft = 120;
 
   //input variables
 let submitWordButton = document.querySelector("#word-input-button");
@@ -22,11 +31,8 @@ let letterGuessInput = document.querySelector("#letter-guess")
 const letterGuessMessage = document.getElementById('letter-guess-message');
 let letterGuess;
 let fillInTheBlank = document.querySelector("#fill-in-the-blank");
-let fillInTheBlankArray = [];
-let guessedLetters = [];
-let incorrectLetters = [];
 let incorrectGuessCounter = document.querySelector("#counter");
-let incorrectGuessNumber = 5;
+const guessedInfoText = document.getElementById('guessed-info-text');
 const rocketPicture = document.getElementById('rocket-picture');
 const lossMessage = document.getElementById('loss-message');
 
@@ -37,35 +43,31 @@ let resetButton = document.querySelector("#reset-button");
 //modal variables
 let closeModalButton = document.querySelector("#close-modal")
 let modal = document.querySelector("#modal")
-let modalToggle = document.querySelector("#settings-button");
-// let botPlayToggle = document.querySelector("#yes-computer");
-let botPlay = true;
-// const personPlayToggle = document.querySelector('#no-computer');
-// let timerOn = document.querySelector("#timer-toggle-on");
-// let timerOff = document.querySelector("#timer-toggle-off");
-let timed = true;
 const clock = document.getElementById('countdown-clock');
 const countdownText = document.getElementById('countdown-text');
 let incorrectGuessInput = document.querySelector("#incorrect-guess-number");
-let timeLeft = 120;
 let intervalID;
 const sizeWord = document.getElementById('size-word');
 const sizePhrase = document.getElementById('size-phrase');
 
 //disabling options until ready
+sizeWord.disabled = true;
+sizePhrase.disabled = true;
+
+//old var declarations kept in case of troubleshooting/feature upgrade:
+// let modalToggle = document.querySelector("#settings-button");
+// let botPlayToggle = document.querySelector("#yes-computer");
+// const personPlayToggle = document.querySelector('#no-computer');
+// let timerOn = document.querySelector("#timer-toggle-on");
+// let timerOff = document.querySelector("#timer-toggle-off");
 // botPlayToggle.disabled = true;
 // personPlayToggle.disabled = true;
 // timerOn.disabled = true;
 // timerOff.disabled = true;
-sizeWord.disabled = true;
-sizePhrase.disabled = true;
 // incorrectGuessInput.disabled = true;
-
-console.log("outside " + mysteryWord);
 
 
   /*----- cached elements  -----*/
-randomWordApi(apiURL);
 
 
   /*----- event listeners -----*/
@@ -78,10 +80,8 @@ modal.style.display = "none";
 
 closeModalButton.addEventListener("click", function(event) {
     event.preventDefault();
-    console.log("line 86 " + mysteryWord);
     modal.style.display = "none";
     resetGame();
-    console.log("line 89");
     if (botPlay === false) {
         clock.innerText = "";
     }
@@ -109,7 +109,6 @@ submitWordButton.addEventListener("click", function(event) {
 
 letterGuessInput.addEventListener("input", function(event) {
     event.preventDefault();
-    console.log("3" + mysteryWord);
     letterGuess = letterGuessInput.value;
     letterGuessInput.value = "";
     if (/^[A-Za-z\s]*$/.test(letterGuess) === false) {
@@ -120,10 +119,8 @@ letterGuessInput.addEventListener("input", function(event) {
             guessedLetters.push(letterGuess);
             if (mysteryWordArray.includes(letterGuess) === true) {
                 correctGuess();
-                console.log("4" + mysteryWord);
             } else {
                 incorrectGuess();
-                console.log("5" + mysteryWord);
             }
         } else {
             warningsDisplay.innerText = "You already tried that letter. Try another."
@@ -138,23 +135,24 @@ resetButton.addEventListener("click", function(event) {
     resetGame();
 })
 
+//hint button clicker
+
   /*----- functions -----*/
 function appendList() {
+    //create?
 }
 
 function autoGenerateWord() {
     randomWordApi(apiURL);
-    console.log("8" + mysteryWord);
-    setTimeout(createMysteryWordArray(mysteryWord), 100);
-    console.log("9" + mysteryWord);
+    setTimeout(() => {
+        createMysteryWordArray(mysteryWord);
+    }, 500) 
     switchDisplaysOnWord();
-    incorrectGuessNumber = incorrectGuessInput.value;
+    incorrectGuessNumber = incorrectGuessInput.value;  
 }
 
 function playComputer() {
-    console.log("1" + mysteryWord);
     autoGenerateWord();
-    console.log("2" + mysteryWord);
     opponent.innerText = "Your opponent is the computer.";
     if (timed === true) {
         intervalID = setInterval(countDown, 1000);
@@ -163,6 +161,7 @@ function playComputer() {
 
 function correctGuess() {
     let letterSpot = [];
+    incorrectGuessInARow = 0;
     for (let j = 0; j < mysteryWordArray.length; j++){
         if (letterGuess === mysteryWordArray[j]){
             letterSpot.push(j)
@@ -186,20 +185,6 @@ function countDown() {
     }
 }
 
-function rocketDisplayCheck(counter) {
-    if (counter === 4){
-        rocketPicture.setAttribute("src", "./images/one.png");
-    } else if (counter === 3) {
-        rocketPicture.setAttribute("src", "./images/two.png");
-    } else if (counter === 2) {
-        rocketPicture.setAttribute("src", "./images/three.png");
-    } else if (counter === 1) {
-        rocketPicture.setAttribute("src", "./images/four.png");
-    } else if (counter === 0) {
-        loss();
-    }
-}
-
 function createMysteryWordArray (word){
     mysteryWordArray = word.split("");
     fillInTheBlankArray = [];
@@ -220,22 +205,33 @@ function incorrectGuess() {
     ul.appendChild(li);
     incorrectGuessNumber--;
     incorrectGuessCounter.innerText = `Parts of the ship left - ${incorrectGuessNumber}`;
+    guessedInfoText.style.display = "none";
     rocketDisplayCheck(incorrectGuessNumber);
+    incorrectGuessInARow++;
+    if (incorrectGuessInARow === 2) {
+        //show hint button
+    }
+}
+
+function hint() {
+    //let r = random generated number between 0 and word length
+    //push mysteryWordArray[r] to fillintheblank[r]
+    //hide button saying "hint"
 }
 
 function loss() {
-    console.log("6" + mysteryWord);
     warningsDisplay.innerText = `You were trying to guess "${mysteryWord}".`;
     lossMessage.style.display = "block";
     letterGuessInput.disabled = true;
     letterGuessMessage.style.display = "none";
     reset.style.display = "block";
     rocketPicture.setAttribute("src", "./images/rocketgif.gif");
+    opponent.style.display = "none"
     clearInterval(intervalID);
 }
 
 function randomWordApi (url) {
-    fetch(apiURL,
+    fetch(url,
         {type: "GET",
     })
     .then(data => {
@@ -247,12 +243,12 @@ function randomWordApi (url) {
 }
 
 function resetGame() {
-    console.log("01" + mysteryWord);
     resetVariables();
     resetErase();
     reset.style.display = "none";
     lossMessage.style.display = "none";
     letterGuessMessage.style.display = "block";
+    guessedInfoText.style.display = "block";
     letterGuessInput.disabled = false;
     clearInterval(intervalID);
     if (botPlay === true) {
@@ -280,8 +276,22 @@ function resetVariables() {
     timeLeft = 120;
 }
 
+function rocketDisplayCheck(counter) {
+    if (counter === 4){
+        rocketPicture.setAttribute("src", "./images/one.png");
+    } else if (counter === 3) {
+        rocketPicture.setAttribute("src", "./images/two.png");
+    } else if (counter === 2) {
+        rocketPicture.setAttribute("src", "./images/three.png");
+    } else if (counter === 1) {
+        rocketPicture.setAttribute("src", "./images/four.png");
+    } else if (counter === 0) {
+        loss();
+    }
+}
+
 function switchDisplaysOnWord() {
-    mysteryWordInput.style.display = "none"
+    mysteryWordInput.style.display = "none";
     warningsDisplay.innerText = "";
     letterGuessForm.style.display = "block";
     fillInTheBlank.style.display = "block";

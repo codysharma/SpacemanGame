@@ -1,3 +1,7 @@
+@media screen and (max-width=600px) {
+/* Need to add */
+}
+
 body {
     background-image: url("./images/Purple\ Nebula\ 3\ -\ 512x512.png");
     background-color: black;
@@ -20,43 +24,54 @@ header {
     color: white;
     text-align: center;
     position: fixed;
-    top: 5%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
 }
 
 ul {
     list-style-type: none;
 }
 
-#countdown {
-    text-align: center;
-}
 
 #display {
     min-height: 450px;
     display: inline-flex;
     position: fixed;
-    top: 35%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 #guesses-display, #inputs, #countdown {
-    background-color: rgba(255, 255, 255, .8);
-    border-radius: 10px;
-    width: 200px;
-    outline: dotted 2px grey;
+    /* outline: dotted 2px grey; */
     padding: 10px;
+    width: 200px;
+    border-radius: 10px;
     font-size: small;
+}
+
+#guesses-display {
+    background-color: rgba(255, 255, 255, .8);
 }
 
 #inputs {
     text-align: center;
+    background-color: rgba(255, 255, 255, .5);
+    color: white;
+}
+
+#countdown {
+    text-align: center;
+    background-color: rgba(255, 255, 255, .2);
+    color: white;
 }
 
 #instructions {
     text-align: center;
+    font-size: x-small;
 }
 
 #letter-guess-form, #fill-in-the-blank, #reset {
