@@ -14,7 +14,7 @@ X Find way to stop already guessed letters from counting
 
 Stretch Goals:  
 X Be able to select auto-play, so the computer chooses the mystery word for the player to guess.  
-Display timer (TODO - how to get the increments every 1s to update on the DOM?).  
+X Display timer (TODO - how to get the increments every 1s to update on the DOM?).  
 X Small, static image builds as the countdown variable increments.  
 X Choose and incorporate font.  
 X Player choice on how many turns before end of game.  

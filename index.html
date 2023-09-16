@@ -23,14 +23,14 @@
             <p>Game Settings (some features are in development)</p>
             <div id="settings">
                 <form id="game-settings">
-                    <input type="radio" name="computer-opponent" id="yes-computer" value="yes-computer" checked>
+                    <input type="radio" name="computer-opponent" id="yes-computer" value="yes-computer" checked onclick="setBotOn()">
                     <label for="yes-computer">Play against the computer</label>
-                    <input type="radio" name="computer-opponent" id="no-computer" value="no-computer">
+                    <input type="radio" name="computer-opponent" id="no-computer" value="no-computer" onclick="setBotOff()">
                     <label for="yes-computer">Play against another person</label>
                     <br>
-                    <input type="radio" name="timer-toggle" id="timer-toggle-on" value="yes-timer" checked>
+                    <input type="radio" name="timer-toggle" id="timer-toggle-on" value="yes-timer" checked onclick="setTimedTrue()">
                     <label for="timer-toggle-on">Timer On</label>
-                    <input type="radio" name="timer-toggle" id="timer-toggle-off" value="no-timer">
+                    <input type="radio" name="timer-toggle" id="timer-toggle-off" value="no-timer" onclick="setTimedFalse()">
                     <label for="timer-toggle-off">Timer Off</label>
                     <br>
                     <input type="range" id="incorrect-guess-number" min="5" max="8" value="5">
@@ -47,7 +47,7 @@
     </div>
     <div id="display">
         <span id="guesses-display">
-            <button type="button" class="button" id="settings-button">Instructions and Settings</button>
+            <button type="button" class="button" id="settings-button" onclick="turnModalOn()">Instructions and Settings</button>
             <div id="instructions">
                 (warning: will reset current game)
             </div>

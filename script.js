@@ -38,11 +38,11 @@ let resetButton = document.querySelector("#reset-button");
 let closeModalButton = document.querySelector("#close-modal")
 let modal = document.querySelector("#modal")
 let modalToggle = document.querySelector("#settings-button");
-let botPlayToggle = document.querySelector("#yes-computer");
+// let botPlayToggle = document.querySelector("#yes-computer");
 let botPlay = true;
-const personPlayToggle = document.querySelector('#no-computer');
-let timerOn = document.querySelector("#timer-toggle-on");
-let timerOff = document.querySelector("#timer-toggle-off");
+// const personPlayToggle = document.querySelector('#no-computer');
+// let timerOn = document.querySelector("#timer-toggle-on");
+// let timerOff = document.querySelector("#timer-toggle-off");
 let timed = true;
 const clock = document.getElementById('countdown-clock');
 const countdownText = document.getElementById('countdown-text');
@@ -76,43 +76,14 @@ modal.style.display = "none";
 //     modal.style.display = "none"
 // })
 
-modalToggle.addEventListener("click", function(event) {
-    event.preventDefault();    
-    modal.style.display = "";
-})
-
 closeModalButton.addEventListener("click", function(event) {
     event.preventDefault();
+    console.log("line 86 " + mysteryWord);
     modal.style.display = "none";
     resetGame();
+    console.log("line 89");
     if (botPlay === false) {
         clock.innerText = "";
-    }
-})
-
-botPlayToggle.addEventListener("click", function(event) {
-    if (event.target && event.target.matches("input[type='radio']")) {
-        botPlay = true;
-    }
-})
-
-personPlayToggle.addEventListener("click", function(event) {
-    if (event.target && event.target.matches("input[type='radio']")) {
-        botPlay = false;
-        opponent.innerText = "";
-    }
-})
-
-timerOn.addEventListener("click", function(event) {
-    if (event.target && event.target.matches("input[type='radio']")) {
-        timed = true;
-    }
-})
-
-timerOff.addEventListener("click", function(event) {
-    if (event.target && event.target.matches("input[type='radio']")) {
-        timed = false;
-        countdownText.innerText = "No timer for this game";
     }
 })
 
@@ -133,7 +104,6 @@ submitWordButton.addEventListener("click", function(event) {
     switchDisplaysOnWord();
     if (timed === true) {
         intervalID = setInterval(countDown, 1000);
-        //Bug: not timing human games
     }
 })
 
@@ -290,9 +260,6 @@ function resetGame() {
     }
 }
 
-// console.log("outside " + mysteryWord);
-
-
 function resetErase() {
     mysteryWordInput.style.display = "";
     warningsDisplay.innerText = "";
@@ -319,6 +286,28 @@ function switchDisplaysOnWord() {
     letterGuessForm.style.display = "block";
     fillInTheBlank.style.display = "block";
     incorrectGuessCounter.innerText = `Parts of the ship left - ${incorrectGuessNumber}`;
+}
+
+function setBotOn() {
+    botPlay = true;
+}
+
+function setBotOff() {
+    botPlay = false;
+    opponent.innerText = "";
+}
+
+function setTimedTrue() {
+    timed = true;
+}
+
+function setTimedFalse() {
+    timed = false;
+    countdownText.innerText = "No timer for this game";
+}
+
+function turnModalOn() {
+    modal.style.display = "";
 }
 
 function win() {
