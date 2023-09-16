@@ -1,6 +1,10 @@
 # SpacemanGame
 
-ToDo:  
+ToDo:
+Decorate the liftoff counter with colored text, background div, etc.  
+Other design aesthetics?  
+
+Base:  
 X Take text input for mystery word.  
 X Take character input as guesses to mystery word.  
 -Should I add a delay so the char is visible in the text box?  
@@ -19,13 +23,12 @@ X Small, static image builds as the countdown variable increments.
 X Choose and incorporate font.  
 X Player choice on how many turns before end of game.  
 Refactor code:  
-Make functions to organize code architecture  
-Make game state object at beginning  
+X Make functions to organize code architecture  
+X Make game state object at beginning  
 At the beginning of a round, select the option to enter a word or phrase with spaces.   
 X Pull random word API for bot play.  
-Create a hint function to appear after certain number consecutive incorrect guesses.  
+X Create a hint function to appear after certain number consecutive incorrect guesses.  
 Decorate the liftoff counter with colored text, background div, etc.  
 X Download gif of image to make the rocket have movement.  
 Save timed results and display session history.  
 Parse timed results by difficulty/char length to make the data more comparable.  
-Other design aesthetics?  
