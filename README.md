@@ -15,19 +15,15 @@ X Find way to stop already guessed letters from counting
 Stretch Goals:  
 X Be able to select auto-play, so the computer chooses the mystery word for the player to guess.  
 Display timer (TODO - how to get the increments every 1s to update on the DOM?).  
-Small, static image builds as the countdown variable increments.  
-Choose and incorporate font.  
+X Small, static image builds as the countdown variable increments.  
+X Choose and incorporate font.  
 X Player choice on how many turns before end of game.  
 Make functions, so code is nicer.  
-Decide which API to use.   
-At the beginning of a round, select the option to enter a word or phrase with spaces.  
-Create pun name.  
-Allow punctuation.  
-Choice at beginning - easy or hard mode, showing punctuation or not showing it.  
+At the beginning of a round, select the option to enter a word or phrase with spaces.   
 X Pull random word API for bot play.  
 Create a hint function to appear after certain number consecutive incorrect guesses.  
 Decorate the liftoff counter with colored text, background div, etc.  
-Download gif of image to make the rocket have movement.  
+X Download gif of image to make the rocket have movement.  
 Save timed results and display session history.  
 Parse timed results by difficulty/char length to make the data more comparable.  
 Other design aesthetics?  

@@ -4,10 +4,16 @@ body {
     background-position: center;
     height: 100vh;
     width: auto;
+    font-family: 'Michroma', sans-serif;
 }
 
 h1 {
-    
+    font-family: 'Orbitron', sans-serif;
+}
+
+button {
+    font-family: 'Michroma', sans-serif;
+    font-size: smaller;
 }
 
 header {
@@ -28,10 +34,10 @@ ul {
 }
 
 #display {
-    min-height: 600px;
+    min-height: 450px;
     display: inline-flex;
     position: fixed;
-    top: 45%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -41,9 +47,15 @@ ul {
     border-radius: 10px;
     width: 200px;
     outline: dotted 2px grey;
+    padding: 10px;
+    font-size: small;
 }
 
 #inputs {
+    text-align: center;
+}
+
+#instructions {
     text-align: center;
 }
 
@@ -69,13 +81,17 @@ ul {
 #modal-textbox {
 	background-color: white;
 	box-shadow: -1px 1px 20px 20px grey;
-	height: 350px;
-	width: 500px;
+	height: 400px;
+	width: 550px;
 	border-radius: 10px;
 	padding: 20px;
 	margin: 150px auto;
     display: ;
 	/* this margin moves it down 150, then auto */
+}
+
+#game-settings {
+    font-size: smaller;
 }
 
 #mystery-word-input {
@@ -87,17 +103,17 @@ ul {
     max-height: 200px;
     z-index: 0;
     position: fixed;
-    left: 400px;
+    left: 450px;
 }
 
-#launchpad {
-
+#loss-message {
+    display: none;
 }
 
 #one {
     width: 200px;
     height: 200px;
-    /* background-color: yellow;  */
+    background-color: rgba(230, 230, 230,);
     z-index: 6;
     position: relative;
 }

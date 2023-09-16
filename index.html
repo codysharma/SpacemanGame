@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script defer src="./script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Orbitron&family=Roboto+Condensed&display=swap" rel="stylesheet">
     <title>Spaceman</title>
 </head>
 <body>
     <header>
-    <h1>Spaceman</h1>
+    <h1>SPACEMAN</h1>
     </header>
     <div id="modal">
         <div id="modal-textbox">
@@ -33,7 +37,7 @@
                     <label for="incorrect-guess-number">Number of mistakes allowed (between 5 - 8)</label>
                     <br>
                     Entering a word or phrase:
-                    <input type="radio" name="mystery-word-size" id="size-word" value="word">
+                    <input type="radio" name="mystery-word-size" id="size-word" value="word" checked>
                     <label for="size-word">Single word</label>
                     <input type="radio" name="mystery-word-size" id="size-phrase" value="phrase">
                     <label for="size-phrase">More than one word</label>
@@ -43,15 +47,16 @@
     </div>
     <div id="display">
         <span id="guesses-display">
-            <div id="instructions">
-                Click the button for instructions and to change settings (warning: will reset current game)
-            </div>
             <button type="button" class="button" id="settings-button">Instructions and Settings</button>
+            <div id="instructions">
+                (warning: will reset current game)
+            </div>
             <h3>Guesses Display</h3>
             <ul id="incorrect-letters">
             </ul>
         </span>
         <span id="inputs">
+            <div id="opponent"></div>
             <div id="reset">
                 <button class="reset" id="reset-button">Click here to play again</button>
                 <br>
@@ -64,24 +69,30 @@
             </form>
             <div id="warnings"></div>
             <form id="letter-guess-form">
-                Enter your letter guess.
+                <p id="letter-guess-message">Enter your letter guess.</p>
                 <input type="text" class="input" name="guesses" id="letter-guess" placeholder="Enter Your Letter Guess">
             </form>
             <div id="fill-in-the-blank">
                 Show fill in the blank display here
             </div>
-            <div id="countdown-clock">Will display game clock here              
+            <div id="countdown-section">
+                <p id="countdown-text">Time to lift-off:</p>
+                <div id="countdown-clock">              
+                </div>
+            </div>
+            <br>
+            <div id="loss-message">Oh, no! The astronaut nabbed our secret croissant recipe and managed to take off. Better luck next time.
             </div>
         </span>
         <span id="countdown">
-            <h4>Liftoff in:</h4>
-            <div id="counter">T minus - 5</div>
+            <h4>Astronaut Progress</h4>
+            <div id="counter">Parts of the ship left - 5</div>
             <br>
             <div id="launchpad">
-                <img id="rocket-picture" src="./images/rocketstill.gif" alt="Countdown Rocket">
-                <div id="one">
+                <img id="rocket-picture" src="./images/blank.png" alt="Countdown Rocket">
+                <!-- <div id="one">
                     <img src="">
-                </div>
+                </div> -->
             </div>
         </span>
     </div>
