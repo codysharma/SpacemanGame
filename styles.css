@@ -1,0 +1,134 @@
+@media screen and (max-width=600px) {
+/* Need to add */
+}
+
+body {
+    background-image: url("./images/Purple\ Nebula\ 3\ -\ 512x512.png");
+    background-color: black;
+    background-position: center;
+    height: 100vh;
+    width: auto;
+    font-family: 'Michroma', sans-serif;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+button {
+    font-family: 'Michroma', sans-serif;
+    font-size: smaller;
+}
+
+header {
+    color: white;
+    text-align: center;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+#display {
+    min-height: 450px;
+    display: inline-flex;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#guesses-display, #inputs, #countdown {
+    /* outline: dotted 2px grey; */
+    padding: 10px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: small;
+}
+
+#guesses-display {
+    background-color: rgba(255, 255, 255, .8);
+}
+
+#inputs {
+    text-align: center;
+    background-color: rgba(255, 255, 255, .5);
+    color: white;
+}
+
+#countdown {
+    text-align: center;
+    background-color: rgba(255, 255, 255, .2);
+    color: white;
+}
+
+#instructions {
+    text-align: center;
+    font-size: x-small;
+}
+
+#letter-guess-form, #fill-in-the-blank, #reset {
+    display: none;
+}
+
+#modal {
+	border: 2px; 
+	background-color: rgba(31, 31, 32, 0.411);
+    border-radius: 10px;
+    overflow: auto;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 1;
+    height: 100%;
+	padding: 10px;
+    display: ;
+}
+
+#modal-textbox {
+	background-color: white;
+	box-shadow: -1px 1px 20px 20px grey;
+	height: 400px;
+	width: 550px;
+	border-radius: 10px;
+	padding: 20px;
+	margin: 150px auto;
+    display: ;
+	/* this margin moves it down 150, then auto */
+}
+
+#game-settings {
+    font-size: smaller;
+}
+
+#mystery-word-input {
+    display: ;
+}
+
+#rocket-picture {
+    max-width: 200px;
+    max-height: 200px;
+    z-index: 0;
+    position: fixed;
+    left: 450px;
+}
+
+#loss-message {
+    display: none;
+}
+
+#one {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(230, 230, 230,);
+    z-index: 6;
+    position: relative;
+}
