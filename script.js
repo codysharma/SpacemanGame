@@ -13,7 +13,7 @@ const state = {
     incorrectLetters: [],
 }
 
-  //input variables
+//input variables
 let mysteryWord;
 let mysteryWordArray;
 let mysteryWordInput = document.querySelector("#mystery-word-input");
@@ -69,13 +69,6 @@ sizePhrase.disabled = true;
 
 
   /*----- event listeners -----*/
-modal.style.display = "none";
-//will re-add this once testing is complete to autoload
-// modalTextBox.addEventListener("loadedmetadata", function(event) {
-//     event.preventDefault();
-//     modal.style.display = "none"
-// })
-
 closeModalButton.addEventListener("click", function(event) {
     event.preventDefault();
     modal.style.display = "none";
@@ -151,6 +144,20 @@ function autoGenerateWord() {
     state.incorrectGuessNumber = incorrectGuessInput.value;  
 }
 
+function changeCounterBackground(mistakes) {
+    if (mistakes === 4) {
+        incorrectGuessCounter.style.backgroundColor = "grey";
+    } else if (mistakes === 3) {
+        incorrectGuessCounter.style.backgroundColor = "black";
+    } else if (mistakes === 2) {
+        incorrectGuessCounter.style.backgroundColor = "orange";
+    } else if (mistakes === 1) {
+        incorrectGuessCounter.style.backgroundColor = "red";
+    } else if (mistakes === 0) {
+        incorrectGuessCounter.style.backgroundColor = "none";
+    }
+}
+
 function checkVictory() {
     if (fillInTheBlank.innerText.includes("_") === false){
         win();
@@ -190,6 +197,7 @@ function countDown() {
     if (state.timeLeft === 0) {
         loss()
         clearInterval(intervalID);
+        clock.innerText = `0: 00`;
     }
 }
 
@@ -221,8 +229,9 @@ function incorrectGuess() {
     state.incorrectGuessNumber--;
     state.incorrectGuessInARow++;
     rocketDisplayCheck(state.incorrectGuessNumber);
+    changeCounterBackground(state.incorrectGuessNumber);
     guessedInfoText.style.display = "none";
-    incorrectGuessCounter.innerText = `Parts of the ship left - ${state.incorrectGuessNumber}`;
+    incorrectGuessCounter.innerText = `${state.incorrectGuessNumber}`;
     if (state.incorrectGuessInARow === 2) {
         hintButton.style.display = "block";
     }
@@ -233,6 +242,7 @@ function loss() {
     lossMessage.style.display = "block";
     letterGuessInput.disabled = true;
     letterGuessMessage.style.display = "none";
+    hintButton.style.display = "none";
     reset.style.display = "block";
     rocketPicture.setAttribute("src", "./images/rocketgif.gif");
     opponent.style.display = "none"
@@ -280,8 +290,10 @@ function resetHide() {
     fillInTheBlank.innerHTML = "";
     reset.style.display = "none";
     lossMessage.style.display = "none";
+    incorrectGuessCounter.style.backgroundColor = "none";
     document.querySelector("#incorrect-letters").innerText = "";
     clock.innerText = "";
+    hintButton.style.display = "none";
     mysteryWordInput.value = ""//Bug: after player 2 succeeds and then resets the game, the mystery word input box defaults to showing previous mystery word as cached chars. How to have it default back to blank input box?
     rocketPicture.setAttribute("src", "./images/blank.png");
 }
@@ -291,18 +303,19 @@ function resetVariables() {
     state.guessedLetters = [];  
     state.incorrectGuessNumber = 5;
     state.timeLeft = 120;
+    state.incorrectGuessInARow = 0;
 }
 
-function rocketDisplayCheck(counter) {
-    if (counter === 4){
+function rocketDisplayCheck(mistakes) {
+    if (mistakes === 4){
         rocketPicture.setAttribute("src", "./images/one.png");
-    } else if (counter === 3) {
+    } else if (mistakes === 3) {
         rocketPicture.setAttribute("src", "./images/two.png");
-    } else if (counter === 2) {
+    } else if (mistakes === 2) {
         rocketPicture.setAttribute("src", "./images/three.png");
-    } else if (counter === 1) {
+    } else if (mistakes === 1) {
         rocketPicture.setAttribute("src", "./images/four.png");
-    } else if (counter === 0) {
+    } else if (mistakes === 0) {
         loss();
     }
 }
@@ -330,7 +343,7 @@ function switchDisplaysOnWord() {
     warningsDisplay.innerText = "";
     letterGuessForm.style.display = "block";
     fillInTheBlank.style.display = "block";
-    incorrectGuessCounter.innerText = `Parts of the ship left - ${state.incorrectGuessNumber}`;
+    incorrectGuessCounter.innerText = `${state.incorrectGuessNumber}`;
 }
 
 function turnModalOn() {
@@ -342,4 +355,5 @@ function win() {
     letterGuessInput.disabled = true;
     reset.style.display = "block";
     clearInterval(intervalID);
+    hintButton.style.display = "none";
 }

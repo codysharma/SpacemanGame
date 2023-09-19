@@ -1,9 +1,5 @@
 # SpacemanGame
 
-ToDo:
-Decorate the liftoff counter with colored text, background div, etc.  
-Other design aesthetics?  
-
 Base:  
 X Take text input for mystery word.  
 X Take character input as guesses to mystery word.  
@@ -28,7 +24,7 @@ X Make game state object at beginning
 At the beginning of a round, select the option to enter a word or phrase with spaces.   
 X Pull random word API for bot play.  
 X Create a hint function to appear after certain number consecutive incorrect guesses.  
-Decorate the liftoff counter with colored text, background div, etc.  
+X Decorate the liftoff counter with colored text, background div, etc.  
 X Download gif of image to make the rocket have movement.  
 Save timed results and display session history.  
 Parse timed results by difficulty/char length to make the data more comparable.  
