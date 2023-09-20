@@ -42,7 +42,8 @@ X Decorate the liftoff counter with colored text, background div, etc.
 X Download gif of image to make the rocket have movement.  
 
 Future potential items:  
-At the beginning of a round, select the option to enter a word or phrase with spaces.   
-Save timed results and display session history.  
-Parse timed results by difficulty/char length to make the data more comparable.  
-Pull a spellcheck API. Tried to find one, but found ones geared towards prose rather than single words.  
+-Making moblie friendly
+-At the beginning of a round, select the option to enter a word or phrase with spaces.   
+-Save timed results and display session history.  
+-Parse timed results by difficulty/char length to make the data more comparable.  
+-Pull a spellcheck API. Tried to find one, but found ones geared towards prose rather than single words.  
