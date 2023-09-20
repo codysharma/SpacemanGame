@@ -141,7 +141,6 @@ function autoGenerateWord() {
         createMysteryWordArray(mysteryWord);
     }, 1000) 
     switchDisplaysOnWord();
-    state.incorrectGuessNumber = incorrectGuessInput.value;  
 }
 
 function changeCounterBackground(mistakes) {
@@ -276,6 +275,8 @@ function resetGame() {
     guessedInfoText.style.display = "block";
     letterGuessInput.disabled = false;
     clearInterval(intervalID);
+    incorrectGuessCounter.innerText = `${state.incorrectGuessNumber}`;
+    incorrectGuessCounter.style.backgroundColor = "rgba(128, 128, 128, .2)"
     if (state.botPlay === true) {
         playComputer();
     }
@@ -301,7 +302,7 @@ function resetHide() {
 function resetVariables() {
     mysteryWord, mysteryWordArray, letterGuess = undefined;
     state.guessedLetters = [];  
-    state.incorrectGuessNumber = 5;
+    state.incorrectGuessNumber = incorrectGuessInput.value;
     state.timeLeft = 120;
     state.incorrectGuessInARow = 0;
 }
