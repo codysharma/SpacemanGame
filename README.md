@@ -1,6 +1,5 @@
 # SpacemanGame
-
-An update on the hangman game, this version of Spaceman can be played either by 2 players or solo with a randomly generated word.
+An update on the hangman game, this version of [Spaceman](https://codysharma.github.io/SpacemanGame/) can be played either by 2 players or solo with a randomly generated word. 
 
 Some features of this game:  
 -Random word pulled via API for playing against the computer  
