@@ -17,7 +17,7 @@ Some features of this game:
 Tech used: Javascript, CSS, HTML, JSON, API integration
 
 Future potential items:  
--Making moblie friendly
+-Making moblie friendly  
 -At the beginning of a round, select the option to enter a word or phrase with spaces.   
 -Save timed results and display session history.  
 -Parse timed results by difficulty/char length to make the data more comparable.  
