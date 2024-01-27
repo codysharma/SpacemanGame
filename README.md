@@ -1,6 +1,9 @@
 # SpacemanGame
 
-Some features of this game:  
+## Tech used:
+Javascript, CSS, HTML, JSON API integration
+
+## Features:  
 -Random word pulled via API for playing against the computer  
 -An option for timer on/off  
 -A choice of how many mistake letters to allow  
